@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import buttonStyles from "./button.module.css";
+import { motion } from "framer-motion";
 
 type ButtonVariant = "primary" | "secondary";
 
@@ -15,15 +16,21 @@ type ButtonProps = BaseButtonProps & {
 const getVariantStyles = (varaint: ButtonVariant) =>
   `${buttonStyles.button} ${buttonStyles[varaint]} body`;
 
+const buttonHover = { whileHover: { scale: 1.02, y: -5 } };
+
 export const Button: React.FC<ButtonProps> = ({
   children,
   variant = "primary",
   ...props
 }) => {
   return (
-    <button className={getVariantStyles(variant)} {...props}>
+    <motion.button
+      className={getVariantStyles(variant)}
+      {...buttonHover}
+      {...props}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 };
 
@@ -38,10 +45,12 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
   ...props
 }) => {
   return (
-    <Link href={href}>
-      <a className={getVariantStyles(variant)} {...props}>
-        {children}
-      </a>
-    </Link>
+    <motion.div {...buttonHover}>
+      <Link href={href} passHref>
+        <a className={getVariantStyles(variant)} {...props}>
+          {children}
+        </a>
+      </Link>
+    </motion.div>
   );
 };

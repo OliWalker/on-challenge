@@ -1,10 +1,13 @@
+import { motion, useAnimation } from "framer-motion";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { slideIn } from "../animations";
 import { Button, ButtonLink } from "../components/Button";
 import { Loading } from "../components/Loading";
 
 import data from "../data.json";
+import { useIsMounted } from "../hooks/useIsMounted";
 import quizStyles from "../styles/pages/quiz.module.css";
 import {
   Answer,
@@ -15,15 +18,17 @@ import {
 
 const { questions } = data;
 
-const Home: NextPage = () => {
+const Quiz: NextPage = () => {
   const { push } = useRouter();
+  const controls = useAnimation();
+
   const [isLoading, setIsLoading] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [ratings, setRatings] = useState({} as RatingMap);
 
   const { copy, answers } = questions[currentQuestionIndex];
 
-  const onAnswerClick = ({ nextQuestion, ratingIncrease }: Answer) => {
+  const onAnswerClick = async ({ nextQuestion, ratingIncrease }: Answer) => {
     const newRatings = increaseRatings({
       currentRatings: ratings,
       ratingIncrease,
@@ -39,7 +44,15 @@ const Home: NextPage = () => {
       }, 5000);
     }
 
-    setCurrentQuestionIndex(nextQuestion);
+    await controls.start({
+      opacity: 0,
+      transition: { duration: 0.3 },
+    });
+    await setCurrentQuestionIndex(nextQuestion);
+    controls.start({
+      opacity: 1,
+      transition: { duration: 0.3 },
+    });
   };
 
   return (
@@ -51,26 +64,34 @@ const Home: NextPage = () => {
       ) : (
         <>
           <p className={`${quizStyles.disclaimer} caption`}>
-            Try on quiz <span className="noWrap">30 days risk free</span>
+            Try on quiz <br />
+            30 days risk free
           </p>
 
-          <h1 className="title">{copy}</h1>
+          <motion.div animate={controls} className={quizStyles.quiz}>
+            <motion.h1 className="title" {...slideIn({ initialY: 50 })}>
+              {copy}
+            </motion.h1>
 
-          <div className={quizStyles.answers}>
-            {answers.map((answer) => (
-              <Button
-                key={answer.copy}
-                variant="secondary"
-                onClick={() => onAnswerClick(answer)}
-              >
-                {answer.copy}
-              </Button>
-            ))}
-          </div>
+            <motion.div
+              className={quizStyles.answers}
+              {...slideIn({ initialY: 80, delay: 0.3 })}
+            >
+              {answers.map((answer) => (
+                <Button
+                  key={answer.copy}
+                  variant="secondary"
+                  onClick={() => onAnswerClick(answer)}
+                >
+                  {answer.copy}
+                </Button>
+              ))}
+            </motion.div>
+          </motion.div>
         </>
       )}
     </section>
   );
 };
 
-export default Home;
+export default Quiz;
