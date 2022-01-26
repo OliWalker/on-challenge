@@ -1,0 +1,14 @@
+.body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  /* The challenge was specified to only work on mobile - so here is a hack to make it only for screens up to 480px */
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+}

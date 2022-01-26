@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Zilla+Slab:wght@400&display=swap");
+
+/* Theme */
+:root {
+  --black: #1a1a1a;
+  --off-black: #1e1e1e;
+  --gray1: #333;
+  --gray2: #444;
+  --gray3: #777;
+  --gray4: #ccc;
+  --gray5: #e3e3e3;
+  --off-white: #f0f0f0;
+  --white: #fff;
+
+  --text-color1: var(--gray1);
+  --text-color2: var(--gray2);
+  --text-color3: var(--gray3);
+  --text-color4: var(--gray4);
+  --text-color5: var(--white);
+
+  --primary: #3e6372;
+
+  --font-size1: 12px;
+  --font-size2: 14px;
+  --font-size3: 16px;
+  --font-size4: 20px;
+  --font-size5: 24px;
+  --font-size6: 28px;
+  --font-size7: 36px;
+
+  --spacings1: 2px;
+  --spacings2: 4px;
+  --spacings3: 8px;
+  --spacings4: 12px;
+  --spacings5: 16px;
+  --spacings6: 24px;
+  --spacings7: 36px;
+  --spacings8: 48px;
+  --spacings9: 60px;
+  --spacings10: 72px;
+  --spacings11: 84px;
+
+  --slab: "Zilla Slab", serif;
+  --sans: "Open Sans", sans-serif;
+}
+
+/* Text styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+li {
+  color: var(--text-color1);
+}
+
+.banner,
+.title {
+  font-family: var(--slab);
+  font-weight: 400;
+}
+
+.body,
+.bodyBig,
+.caption {
+  font-family: var(--sans);
+  font-weight: 400;
+}
+
+.banner {
+  font-size: var(--font-size6);
+}
+
+.title {
+  font-size: var(--font-size5);
+}
+
+.subTitle {
+  font-size: var(--font-size4);
+}
+
+.body {
+  font-size: var(--font-size3);
+}
+
+.caption {
+  font-size: var(--font-size2);
+  font-weight: 600;
+  color: var(--text-color3);
+  letter-spacing: 1px;
+}
+
+/* Utility classes */
+
+.page {
+  padding: var(--spacings3);
+  flex-grow: 1;
+}
+
+.noWrap {
+  white-space: nowrap;
+}
+
+.removeLineHeight {
+  line-height: 1;
+}
