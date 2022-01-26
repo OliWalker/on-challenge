@@ -1,0 +1,26 @@
+.shoeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacings6);
+  align-items: center;
+}
+
+.shoeCardInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacings4);
+  background: var(--off-white);
+  padding: var(--spacings5);
+  padding-bottom: var(--spacings7);
+  border-radius: 1px;
+}
+
+.shoeCardInnerImg {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacings4) 0;
+}
+
+.shoeCard button {
+  width: 68%;
+}
