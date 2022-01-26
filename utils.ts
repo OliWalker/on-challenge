@@ -68,7 +68,7 @@ export const calculatePrioritizedResults = (ratingMap: RatingMap) =>
 /**
  * Typescript util to make sure that the Shoe is defined and of type Shoe.
  */
-const isShoe = (shoe: Shoe | undefined): shoe is Shoe => {
+export const isShoe = (shoe: Shoe | undefined): shoe is Shoe => {
   return !!shoe;
 };
 
