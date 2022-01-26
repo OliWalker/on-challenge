@@ -1,0 +1,12 @@
+.resultsPage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacings8);
+  padding-top: var(--spacings8);
+}
+
+.resultsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacings6);
+}
